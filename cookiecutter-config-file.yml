@@ -1,0 +1,13 @@
+# This file contains values from Cookiecutter
+
+default_context:
+  project_name: "python-star-wars-api-client"
+  project_description: "Star Wars API Client"
+  organization: "marcslopz"
+  license: "MIT"
+  minimal_python_version: 3.9
+  github_name: "marcslopz"
+  email: "marcs.lopz@gmail.com"
+  version: "0.1.0"
+  line_length: "120"
+  create_example_template: "cli"
