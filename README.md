@@ -16,67 +16,6 @@ Star Wars API Client
 
 </div>
 
-## Very first steps
-
-### Initialize your code
-
-1. Initialize `git` inside your repo:
-
-```bash
-cd python-star-wars-api-client && git init
-```
-
-2. If you don't have `Poetry` installed run:
-
-```bash
-make poetry-download
-```
-
-3. Initialize poetry and install `pre-commit` hooks:
-
-```bash
-make install
-make pre-commit-install
-```
-
-4. Run the codestyle:
-
-```bash
-make codestyle
-```
-
-5. Upload initial code to GitHub:
-
-```bash
-git add .
-git commit -m ":tada: Initial commit"
-git branch -M main
-git remote add origin https://github.com/marcslopz/python-star-wars-api-client.git
-git push -u origin main
-```
-
-### Set up bots
-
-- Set up [Dependabot](https://docs.github.com/en/github/administering-a-repository/enabling-and-disabling-version-updates#enabling-github-dependabot-version-updates) to ensure you have the latest dependencies.
-- Set up [Stale bot](https://github.com/apps/stale) for automatic issue closing.
-
-### Poetry
-
-Want to know more about Poetry? Check [its documentation](https://python-poetry.org/docs/).
-
-<details>
-<summary>Details about Poetry</summary>
-<p>
-
-Poetry's [commands](https://python-poetry.org/docs/cli/#commands) are very intuitive and easy to learn, like:
-
-- `poetry add numpy@latest`
-- `poetry run pytest`
-- `poetry publish --build`
-
-etc
-</p>
-</details>
 
 ### Building and releasing your package
 
@@ -86,28 +25,6 @@ Building a new version of the application contains steps:
 - Make a commit to `GitHub`.
 - Create a `GitHub release`.
 - And... publish 🙂 `poetry publish --build`
-
-## 🎯 What's next
-
-Well, that's up to you 💪🏻. I can only recommend the packages and articles that helped me.
-
-- [`Typer`](https://github.com/tiangolo/typer) is great for creating CLI applications.
-- [`Rich`](https://github.com/willmcgugan/rich) makes it easy to add beautiful formatting in the terminal.
-- [`Pydantic`](https://github.com/samuelcolvin/pydantic/) – data validation and settings management using Python type hinting.
-- [`Loguru`](https://github.com/Delgan/loguru) makes logging (stupidly) simple.
-- [`tqdm`](https://github.com/tqdm/tqdm) – fast, extensible progress bar for Python and CLI.
-- [`IceCream`](https://github.com/gruns/icecream) is a little library for sweet and creamy debugging.
-- [`orjson`](https://github.com/ijl/orjson) – ultra fast JSON parsing library.
-- [`Returns`](https://github.com/dry-python/returns) makes you function's output meaningful, typed, and safe!
-- [`Hydra`](https://github.com/facebookresearch/hydra) is a framework for elegantly configuring complex applications.
-- [`FastAPI`](https://github.com/tiangolo/fastapi) is a type-driven asynchronous web framework.
-
-Articles:
-
-- [Open Source Guides](https://opensource.guide/).
-- [A handy guide to financial support for open source](https://github.com/nayafia/lemonade-stand)
-- [GitHub Actions Documentation](https://help.github.com/en/actions).
-- Maybe you would like to add [gitmoji](https://gitmoji.carloscuesta.me/) to commit names. This is really funny. 😄
 
 ## 🚀 Features
 
@@ -137,34 +54,14 @@ Articles:
 - [`Stale bot`](https://github.com/apps/stale) that closes abandoned issues after a period of inactivity. (You will only [need to setup free plan](https://github.com/marketplace/stale)). Configuration is [here](https://github.com/marcslopz/python-star-wars-api-client/blob/master/.github/.stale.yml).
 - [Semantic Versions](https://semver.org/) specification with [`Release Drafter`](https://github.com/marketplace/actions/release-drafter).
 
-## Installation
-
-```bash
-pip install -U python-star-wars-api-client
-```
-
-or install with `Poetry`
-
-```bash
-poetry add python-star-wars-api-client
-```
-
-Then you can run
-
-```bash
-python-star-wars-api-client --help
-```
-
-or with `Poetry`:
-
-```bash
-poetry run python-star-wars-api-client --help
-```
 
 ### Makefile usage
 
 [`Makefile`](https://github.com/marcslopz/python-star-wars-api-client/blob/master/Makefile) contains a lot of functions for faster development.
 
+#### Local development with Poetry
+> Note: `Poetry` and `pre-commit` packages will be installed using your `python` current binary. If you want to
+avoid modifying your local system, use Docker development in the next section.
 <details>
 <summary>1. Download and remove Poetry</summary>
 <p>
@@ -290,9 +187,36 @@ make test && make check-codestyle && make mypy && make check-safety
 </details>
 
 <details>
-<summary>8. Docker</summary>
+<summary>8. Cleanup</summary>
+<p>
+Delete pycache files
+
+```bash
+make pycache-remove
+```
+
+Remove package build
+
+```bash
+make build-remove
+```
+
+Or to remove pycache, build and docker image run:
+
+```bash
+make clean-all
+```
+
+</p>
+</details>
+
+#### Local development using Docker images
+
+<details>
+<summary>1. Build</summary>
 <p>
 
+Build dev image (with dev dependencies)
 ```bash
 make docker-build
 ```
@@ -302,7 +226,45 @@ which is equivalent to:
 ```bash
 make docker-build VERSION=latest
 ```
+</p>
+</details>
 
+<details>
+<summary>2. Run shell (bash) into the container</summary>
+
+> Note: You will be able to run all make targets inside the container from the previous section
+
+<p>
+
+```bash
+make docker-run-bash
+```
+</p>
+</details>
+
+<details>
+<summary>3. Run tests</summary>
+<p>
+
+```bash
+make docker-run-test
+```
+</p>
+</details>
+
+<details>
+<summary>4. Run all linter tools</summary>
+<p>
+
+```bash
+make docker-run-lint
+```
+</p>
+</details>
+
+<details>
+<summary>5. Remove docker images </summary>
+<p>
 Remove docker image with
 
 ```bash
@@ -315,7 +277,7 @@ More information [about docker](https://github.com/marcslopz/python-star-wars-ap
 </details>
 
 <details>
-<summary>9. Cleanup</summary>
+<summary>6. Cleanup</summary>
 <p>
 Delete pycache files
 
