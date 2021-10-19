@@ -36,6 +36,7 @@ python = "^3.9"
 
 typer = {extras = ["all"], version = "^0.3.2"}
 rich = "^10.7.0"
+pydantic = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
@@ -116,7 +117,7 @@ warn_unused_ignores = true
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
 # Directories that are not visited by pytest collector:
-norecursedirs =["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
+norecursedirs =["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__", "python_star_wars_api_client"]
 doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
 
 # Extra options:

@@ -2,13 +2,15 @@
 from typing import Optional
 
 from enum import Enum
-from random import choice
 
 import typer
 from rich.console import Console
 
 from python_star_wars_api_client import version
-from python_star_wars_api_client.example import hello
+from python_star_wars_api_client.application.swapi_app import StarWarsApiClientApp
+from python_star_wars_api_client.domain.aggregates import CharacterSet
+from python_star_wars_api_client.infrastructure.httpbin.with_requests import send_csv
+from python_star_wars_api_client.infrastructure.swapi.with_requests import StarWarsApiWithRequests
 
 
 class Color(str, Enum):
@@ -55,12 +57,11 @@ def main(
         help="Prints the version of the python-star-wars-api-client package.",
     ),
 ) -> None:
-    """Print a greeting with a giving name."""
-    if color is None:
-        color = choice(list(Color))
-
-    greeting: str = hello(name)
-    console.print(f"[bold {color}]{greeting}[/]")
+    swapi_app = StarWarsApiClientApp(StarWarsApiWithRequests)
+    most_appearing_ten_characters: CharacterSet = swapi_app.get_characters("films", 10)
+    most_appearing_ten_characters_by_height = most_appearing_ten_characters.get_characters_ordered_by("height")
+    csv = most_appearing_ten_characters_by_height.csv()
+    send_csv("ten_most_appearing_sw_characters.csv", csv)
 
 
 if __name__ == "__main__":
