@@ -4,9 +4,10 @@ from rich.console import Console
 
 from python_star_wars_api_client import version
 from python_star_wars_api_client.application.csv_writer import CSVWriter
+from python_star_wars_api_client.application.httpbin_sender import HttpBinSender
 from python_star_wars_api_client.application.swapi_app import StarWarsApiClientApp
 from python_star_wars_api_client.domain.aggregates import CharacterSet
-from python_star_wars_api_client.infrastructure.httpbin.with_requests import send_csv
+from python_star_wars_api_client.infrastructure.httpbin.with_requests import HttpBinWithRequests
 from python_star_wars_api_client.infrastructure.swapi.with_requests import StarWarsApiWithRequests
 
 app = typer.Typer(
@@ -47,7 +48,11 @@ def main(
     csv_writer = CSVWriter()
     csv: str = csv_writer.get_characters_csv(most_appearing_ten_characters_by_height, all_species)
     console.print(f"[yellow]python-star-wars-api-client[/] csv: \n[bold blue]{csv}[/]")
-    # send_csv("ten_most_appearing_sw_characters.csv", csv)
+    httpbin_sender = HttpBinSender(HttpBinWithRequests)
+    status_code = httpbin_sender.send_file("swapi_most_appearing_characters.csv", csv)
+    console.print(
+        f"[yellow]python-star-wars-api-client[/] csv sent to httpbin.org: [bold blue] Response Status {status_code}[/]"
+    )
 
 
 if __name__ == "__main__":
