@@ -56,3 +56,6 @@ class CharacterSet:
 
     def __getitem__(self, index: int):
         return self.characters[index]
+
+    def __repr__(self):
+        return f"<CharacterSet [{len(self.characters)} characters]>"

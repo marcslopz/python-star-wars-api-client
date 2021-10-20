@@ -230,7 +230,18 @@ make docker-build VERSION=latest
 </details>
 
 <details>
-<summary>2. Run shell (bash) into the container</summary>
+<summary>2. Run the application in a container</summary>
+<p>
+
+```bash
+make docker-run
+```
+
+</p>
+</details>
+
+<details>
+<summary>3. Run shell (bash) into the container</summary>
 
 > Note: You will be able to run all make targets inside the container from the previous section
 
@@ -243,7 +254,7 @@ make docker-run-bash
 </details>
 
 <details>
-<summary>3. Run tests</summary>
+<summary>4. Run tests</summary>
 <p>
 
 ```bash
@@ -253,7 +264,7 @@ make docker-run-test
 </details>
 
 <details>
-<summary>4. Run all linter tools</summary>
+<summary>5. Run all linter tools</summary>
 <p>
 
 ```bash
@@ -263,7 +274,7 @@ make docker-run-lint
 </details>
 
 <details>
-<summary>5. Remove docker images </summary>
+<summary>6. Remove docker images </summary>
 <p>
 Remove docker image with
 
@@ -277,7 +288,7 @@ More information [about docker](https://github.com/marcslopz/python-star-wars-ap
 </details>
 
 <details>
-<summary>6. Cleanup</summary>
+<summary>7. Cleanup</summary>
 <p>
 Delete pycache files
 

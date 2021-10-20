@@ -74,6 +74,13 @@ docker-build:
 		-f ./docker/Dockerfile \
 		--no-cache
 
+.PHONY: docker-run
+docker-run:
+	@if [[ "$$(docker images -q $(IMAGE):$(VERSION) 2> /dev/null)" == "" ]]; then $(MAKE) docker-build;	fi
+	docker run -it --rm \
+   -v $$(pwd):/workspace \
+   $(IMAGE):$(VERSION)
+
 .PHONY: docker-run-bash
 docker-run-bash:
 	@if [[ "$$(docker images -q $(IMAGE):$(VERSION) 2> /dev/null)" == "" ]]; then $(MAKE) docker-build;	fi
