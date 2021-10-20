@@ -7,6 +7,7 @@ class StarWarsApiInterface:
     BASE_URL = "https://swapi.dev/api"
     PEOPLE = "people"
     SPECIES = "species"
+    FILMS = "films"
 
     def get_all_characters(self) -> CharacterSet:
         """Fetch SW API to get all the characters (/people endpoint)

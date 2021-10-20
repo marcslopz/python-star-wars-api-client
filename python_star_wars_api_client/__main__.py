@@ -3,6 +3,7 @@ import typer
 from rich.console import Console
 
 from python_star_wars_api_client import version
+from python_star_wars_api_client.application.csv_writer import CSVWriter
 from python_star_wars_api_client.application.swapi_app import StarWarsApiClientApp
 from python_star_wars_api_client.domain.aggregates import CharacterSet
 from python_star_wars_api_client.infrastructure.httpbin.with_requests import send_csv
@@ -41,7 +42,11 @@ def main(
         f"[yellow]python-star-wars-api-client[/] returned characters: [bold blue]"
         f"{most_appearing_ten_characters_by_height}[/]"
     )
-    # csv = most_appearing_ten_characters_by_height.csv()
+    all_species = swapi_app.get_species(order_by="id")
+    console.print(f"[yellow]python-star-wars-api-client[/] returned species: [bold blue]" f"{all_species}[/]")
+    csv_writer = CSVWriter()
+    csv: str = csv_writer.get_characters_csv(most_appearing_ten_characters_by_height, all_species)
+    console.print(f"[yellow]python-star-wars-api-client[/] csv: \n[bold blue]{csv}[/]")
     # send_csv("ten_most_appearing_sw_characters.csv", csv)
 
 
