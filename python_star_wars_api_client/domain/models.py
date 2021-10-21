@@ -31,7 +31,7 @@ class Character(Model):
     films: list[AnyHttpUrl]
 
     @validator("species_ids", always=True)
-    def id_from_url(cls, v, values, **kwargs):
+    def species_id_from_url(cls, v, values, **kwargs):
         return [get_id_from_url(species_url) for species_url in values["species"]]
 
 

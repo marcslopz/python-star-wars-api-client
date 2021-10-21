@@ -16,17 +16,7 @@ Star Wars API Client
 
 </div>
 
-
-### Building and releasing your package
-
-Building a new version of the application contains steps:
-
-- Bump the version of your package `poetry version <version>`. You can pass the new version explicitly, or a rule such as `major`, `minor`, or `patch`. For more details, refer to the [Semantic Versions](https://semver.org/) standard.
-- Make a commit to `GitHub`.
-- Create a `GitHub release`.
-- And... publish 🙂 `poetry publish --build`
-
-## 🚀 Features
+## ⚙ Features
 
 ### Development features
 
@@ -55,7 +45,21 @@ Building a new version of the application contains steps:
 - [Semantic Versions](https://semver.org/) specification with [`Release Drafter`](https://github.com/marketplace/actions/release-drafter).
 
 
-### Makefile usage
+## 🚀 Quick start
+
+> Note: to see more details to execute tests, linting and other extras, see `Makefile usage` section
+
+In order to build and execute the example main program (a.k.a. get the characters who appeared the most in Start Wars 
+films ordered by height):
+
+```
+make docker-build
+make docker-run
+```
+
+> Requirements: you must have docker installed and running
+> 
+## 🖖Makefile usage
 
 [`Makefile`](https://github.com/marcslopz/python-star-wars-api-client/blob/master/Makefile) contains a lot of functions for faster development.
 
@@ -310,6 +314,16 @@ make clean-all
 
 </p>
 </details>
+
+### Building and releasing your package
+
+Building a new version of the application contains steps:
+
+- Bump the version of your package `poetry version <version>`. You can pass the new version explicitly, or a rule such as `major`, `minor`, or `patch`. For more details, refer to the [Semantic Versions](https://semver.org/) standard.
+- Make a commit to `GitHub`.
+- Create a `GitHub release`.
+- And... publish 🙂 `poetry publish --build`
+
 
 ## 📈 Releases
 
