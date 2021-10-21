@@ -14,6 +14,9 @@ class StarWarsApiInterface:
 
         Returns:
             A populated CharacterSet with all the SW API results
+
+        # noqa: DAR202
+        # noqa: DAR401
         """
         raise NotImplementedError
 
@@ -22,5 +25,8 @@ class StarWarsApiInterface:
 
         Returns:
             A populated SpeciesSet with all the SW API results
+
+        # noqa: DAR202
+        # noqa: DAR401
         """
         raise NotImplementedError

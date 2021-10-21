@@ -3,6 +3,8 @@
 Package used underneath this client:
 https://github.com/phalt/swapi-python
 """
+from typing import Generator
+
 import requests
 
 from python_star_wars_api_client.domain.aggregates import AggregateSet, CharacterSet, SpeciesSet
@@ -37,7 +39,9 @@ class StarWarsApiWithRequests(StarWarsApiInterface):
 
         return all_species
 
-    def _get_resources(self, aggregate_class: AggregateSet, model_class: Model, url_path: str) -> AggregateSet:
+    def _get_resources(
+        self, aggregate_class: type[AggregateSet], model_class: type[Model], url_path: str
+    ) -> Generator[AggregateSet, None, None]:
         next_page = f"{self.BASE_URL}/{url_path}"
         while next_page:
             response = requests.get(next_page).json()

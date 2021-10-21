@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+from typing import Any, ClassVar
+
 from python_star_wars_api_client.domain.models import Character, Model, Species
 
 
-def sort_key(character: Character, order_by: str):
-    character_attribute = getattr(character, order_by)
+def sort_key(item: Model, order_by: str) -> Any:
+    character_attribute = getattr(item, order_by)
     if isinstance(character_attribute, list):
         return len(character_attribute)
 
@@ -15,9 +17,9 @@ def sort_key(character: Character, order_by: str):
 
 
 class AggregateSet:
-    model_class = Model
+    model_class: ClassVar[type[Model]]
 
-    def __init__(self, items: list[model_class]):
+    def __init__(self, items: list[Model]):
         self.items = items
 
     def sort(self, order_by: str, descending: bool = True) -> None:
@@ -47,20 +49,20 @@ class AggregateSet:
             raise ValueError(f"limit with negative value ({limit})")
         self.items = self.items[:limit]
 
-    def extend(self, items_to_extend: AggregateSet):
+    def extend(self, items_to_extend: AggregateSet) -> None:
         self.items.extend(items_to_extend.items)
-
-    def csv(self):
-        raise NotImplementedError
 
     def __len__(self):
         return len(self.items)
 
-    def __getitem__(self, index: int):
+    def __getitem__(self, index: int) -> Model:
         return self.items[index]
 
     def __repr__(self):
         return f"<{self.__class__.__name__} [{len(self.items)} {self.model_class.__name__}]>"
+
+    def __iter__(self):
+        return self.items.__iter__()
 
 
 class CharacterSet(AggregateSet):

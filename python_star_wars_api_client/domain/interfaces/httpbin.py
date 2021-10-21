@@ -16,5 +16,8 @@ class HttpBinApiInterface:
 
         Returns:
             status_code returned by httpbin.org
+
+        # noqa: DAR202
+        # noqa: DAR401
         """
         raise NotImplementedError

@@ -2,6 +2,7 @@
 
 """
 from python_star_wars_api_client.domain.aggregates import CharacterSet, SpeciesSet
+from python_star_wars_api_client.domain.models import Model, Species
 
 
 class CSVWriter:
@@ -30,7 +31,11 @@ class CSVWriter:
 
         species.sort("id", descending=False)
         for character in characters:
-            related_species_name = (species[character.species_ids[0] - 1]).name if character.species_ids else ""
+            related_species_name = ""
+            if character.species_ids:
+                species_instance: Model = species[character.species_ids[0] - 1]
+                if isinstance(species_instance, Species):
+                    related_species_name = species_instance.name
             csv_result += f"\n{character.name},{related_species_name},{character.height},{len(character.films)}"
 
         return csv_result

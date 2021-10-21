@@ -7,7 +7,7 @@ from python_star_wars_api_client.domain.interfaces.httpbin import HttpBinApiInte
 class HttpBinSender:
     """HttpBinSender application service"""
 
-    def __init__(self, httpbin_class: HttpBinApiInterface):
+    def __init__(self, httpbin_class):
         self.httpbin_class = httpbin_class()
 
     def send_file(self, filename: str, content: str) -> int:

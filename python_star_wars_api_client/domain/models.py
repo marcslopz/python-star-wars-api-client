@@ -13,6 +13,7 @@ def get_id_from_url(url: str) -> int:
 class Model(BaseModel):
     url: AnyHttpUrl
     id: int = 0
+    name: str
 
     @validator("id", always=True)
     def id_from_url(cls, v, values, **kwargs):
@@ -24,7 +25,6 @@ class Model(BaseModel):
 
 
 class Character(Model):
-    name: str
     height: str  # changed from int to str because some People have "unknown" as height in SW API
     species: list[AnyHttpUrl]
     species_ids: list[int] = []
@@ -36,8 +36,4 @@ class Character(Model):
 
 
 class Species(Model):
-    name: str
-
-
-class ModelID(BaseModel):
-    id: int
+    pass

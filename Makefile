@@ -58,7 +58,7 @@ check-safety:
 	poetry run bandit -ll --recursive python_star_wars_api_client tests
 
 .PHONY: lint
-lint: test check-codestyle mypy check-safety
+lint: test check-codestyle check-safety mypy
 
 #* Docker
 # Example: make docker-build VERSION=latest

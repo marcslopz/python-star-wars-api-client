@@ -1,4 +1,6 @@
 """Tests for swapi_app module."""
+from typing import Any
+
 import json
 from unittest import TestCase, mock
 
@@ -6,7 +8,7 @@ from python_star_wars_api_client.application.swapi_app import StarWarsApiClientA
 from python_star_wars_api_client.infrastructure.swapi.with_requests import StarWarsApiWithRequests
 
 
-def read_json_file(path: str) -> dict:
+def read_json_file(path: str) -> dict[str, Any]:
     with open(path) as f:
         content = json.loads(f.read())
     return content
