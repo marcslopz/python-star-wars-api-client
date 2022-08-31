@@ -4,7 +4,6 @@
 
 [![Build status](https://github.com/marcslopz/python-star-wars-api-client/workflows/build/badge.svg?branch=master&event=push)](https://github.com/marcslopz/python-star-wars-api-client/actions?query=workflow%3Abuild)
 [![Python Version](https://img.shields.io/pypi/pyversions/python-star-wars-api-client.svg)](https://pypi.org/project/python-star-wars-api-client/)
-[![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/marcslopz/python-star-wars-api-client/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
@@ -34,7 +33,6 @@ Star Wars API Client
 - `Github Actions` with predefined [build workflow](https://github.com/marcslopz/python-star-wars-api-client/blob/master/.github/workflows/build.yml) as the default CI/CD.
 - Everything is already set up for security checks, codestyle checks, code formatting, testing, linting, docker builds, etc with [`Makefile`](https://github.com/marcslopz/python-star-wars-api-client/blob/master/Makefile#L89). More details in [makefile-usage](#makefile-usage).
 - [Dockerfile](https://github.com/marcslopz/python-star-wars-api-client/blob/master/docker/Dockerfile) for your package.
-- Always up-to-date dependencies with [`@dependabot`](https://dependabot.com/). You will only [enable it](https://docs.github.com/en/github/administering-a-repository/enabling-and-disabling-version-updates#enabling-github-dependabot-version-updates).
 - Automatic drafts of new releases with [`Release Drafter`](https://github.com/marketplace/actions/release-drafter). You may see the list of labels in [`release-drafter.yml`](https://github.com/marcslopz/python-star-wars-api-client/blob/master/.github/release-drafter.yml). Works perfectly with [Semantic Versions](https://semver.org/) specification.
 
 ### Open source community features
